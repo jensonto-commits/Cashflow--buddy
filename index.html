@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CashFlow Buddy — Cash clarity, without the spreadsheets</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--ink:#172033;--muted:#758096;--line:#e8ecf3;--green:#12805c;--green-bg:#e7f7ef;--red:#c84b58;--red-bg:#fff0f1;--blue:#4568e8;--blue-bg:#edf1ff;--amber:#a96b12;--amber-bg:#fff6df;--shadow:0 8px 28px rgba(28,43,75,.06)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select{font:inherit}button{cursor:pointer}.app{max-width:1240px;margin:auto;padding:26px 24px 42px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:26px}.brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;border-radius:14px;background:#143f36;color:white;display:grid;place-items:center;font-weight:800;font-size:20px;box-shadow:0 5px 14px #143f3628}.brand h1{font-size:20px;line-height:1.2;margin:0;letter-spacing:-.5px}.brand p{margin:4px 0 0;color:var(--muted);font-size:12px}.top-actions{display:flex;gap:9px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:white;color:var(--ink);padding:10px 14px;border-radius:10px;font-weight:650;font-size:13px}.btn.primary{background:#143f36;border-color:#143f36;color:#fff}.btn:hover{filter:brightness(.98);transform:translateY(-1px)}.welcome{display:flex;justify-content:space-between;align-items:end;gap:14px;margin:10px 0 18px}.welcome h2{font-size:25px;letter-spacing:-.8px;margin:0}.welcome p{color:var(--muted);margin:5px 0 0}.period{border:1px solid var(--line);border-radius:10px;background:white;padding:9px 12px;color:var(--ink)}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:16px}.metric,.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}.metric{padding:18px}.metric-head{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:12px;font-weight:650}.metric-icon{height:32px;width:32px;border-radius:10px;display:grid;place-items:center;background:var(--blue-bg);color:var(--blue);font-size:17px}.metric-value{font-size:25px;font-weight:780;letter-spacing:-.8px;margin:12px 0 5px;white-space:nowrap}.metric-foot{font-size:11px;color:var(--muted)}.metric.positive .metric-icon{background:var(--green-bg);color:var(--green)}.metric.warning .metric-icon{background:var(--amber-bg);color:var(--amber)}.metric.negative .metric-icon{background:var(--red-bg);color:var(--red)}.layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(290px,1fr);gap:16px;margin-bottom:16px}.panel{padding:20px;min-width:0}.panel-head{display:flex;align-items:start;justify-content:space-between;gap:12px;margin-bottom:16px}.panel h3{font-size:15px;margin:0;letter-spacing:-.2px}.sub{font-size:12px;color:var(--muted);margin:4px 0 0}.legend{display:flex;gap:14px;align-items:center;color:var(--muted);font-size:11px}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;background:var(--green)}.dot.red{background:#e58b93}.chart-wrap{height:220px;position:relative}.chart-wrap canvas{width:100%;height:100%;display:block}.chart-labels{display:flex;justify-content:space-between;color:var(--muted);font-size:10px;margin-top:7px}.forecast-box{background:#f7faf9;border:1px solid #e3eee9;border-radius:13px;padding:15px;margin-bottom:14px}.forecast-box .label{color:var(--muted);font-size:12px}.forecast-box .amount{font-size:24px;font-weight:780;letter-spacing:-.6px;margin:4px 0}.forecast-box .note{font-size:11px;color:var(--muted)}.alert{padding:11px 12px;border-radius:11px;background:var(--amber-bg);color:#83550d;font-size:12px;display:flex;gap:9px;align-items:flex-start;margin-top:10px}.alert.safe{background:var(--green-bg);color:#176746}.forecast-list{display:grid;gap:12px}.forecast-row{display:flex;justify-content:space-between;gap:10px;font-size:12px}.forecast-row span:first-child{color:var(--muted)}.forecast-row strong{font-weight:700}.table-panel{padding:0;overflow:hidden}.table-panel .panel-head{padding:20px 20px 0}.table-tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.search{border:1px solid var(--line);border-radius:9px;padding:9px 11px;min-width:160px;outline:none}.search:focus,input:focus,select:focus{border-color:#91a5fa;box-shadow:0 0 0 3px #4568e817}.table-scroll{overflow:auto}table{width:100%;border-collapse:collapse;min-width:680px}th,td{text-align:left;padding:13px 20px;border-bottom:1px solid #f0f2f7;font-size:12px}th{color:var(--muted);font-weight:650;background:#fcfcfe;font-size:10px;text-transform:uppercase;letter-spacing:.5px}td{white-space:nowrap}.tx-name{font-weight:700;color:var(--ink)}.tx-sub{font-size:10px;color:var(--muted);margin-top:3px}.pill{display:inline-flex;align-items:center;padding:4px 8px;border-radius:99px;font-size:10px;font-weight:700;background:#f1f3f8;color:#657087}.pill.received,.pill.paid{background:var(--green-bg);color:var(--green)}.pill.expected,.pill.upcoming{background:var(--blue-bg);color:var(--blue)}.pill.overdue{background:var(--red-bg);color:var(--red)}.money-in{color:var(--green);font-weight:750}.money-out{color:var(--ink);font-weight:750}.actions-cell button{border:0;background:transparent;color:var(--muted);padding:4px 7px;border-radius:6px}.actions-cell button:hover{background:#f1f3f8;color:var(--ink)}.bottom-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.mini-list{display:grid;gap:0}.mini-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #f0f2f7}.mini-item:last-child{border-bottom:0}.mini-left{display:flex;align-items:center;gap:10px;min-width:0}.mini-icon{width:34px;height:34px;flex:0 0 auto;border-radius:10px;display:grid;place-items:center;background:var(--blue-bg);color:var(--blue)}.mini-icon.exp{background:var(--amber-bg);color:var(--amber)}.mini-title{font-weight:700;font-size:12px}.mini-meta{color:var(--muted);font-size:10px;margin-top:2px}.mini-amount{font-weight:750;font-size:12px;white-space:nowrap}.empty{padding:28px 12px;text-align:center;color:var(--muted);font-size:12px}.footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:18px;color:var(--muted);font-size:10px}.modal-backdrop{position:fixed;inset:0;background:#10182772;display:none;align-items:center;justify-content:center;padding:18px;z-index:5}.modal-backdrop.open{display:flex}.modal{background:white;border-radius:18px;padding:23px;width:min(520px,100%);max-height:92vh;overflow:auto;box-shadow:0 24px 80px #11182738}.modal h3{margin:0 0 5px;font-size:19px}.modal .sub{margin-bottom:18px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:11px;color:#59657a;font-weight:700}.field input,.field select{width:100%;padding:11px;border:1px solid var(--line);border-radius:9px;background:#fff;outline:none;color:var(--ink)}.form-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:20px}.type-toggle{display:flex;gap:8px}.type-toggle button{flex:1;padding:10px;border:1px solid var(--line);background:#fff;border-radius:9px;color:var(--muted);font-weight:700}.type-toggle button.active.income{background:var(--green-bg);border-color:#a9dfc4;color:var(--green)}.type-toggle button.active.expense{background:var(--red-bg);border-color:#f0c1c5;color:var(--red)}.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#172033;color:white;padding:11px 16px;border-radius:10px;font-size:12px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.2s;z-index:9}.toast.show{opacity:1}.disclaimer{font-size:10px;color:var(--muted);margin-top:12px;line-height:1.5}
+@media(max-width:900px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.layout{grid-template-columns:1fr}.bottom-grid{grid-template-columns:1fr}.chart-wrap{height:210px}}
+@media(max-width:560px){.app{padding:17px 12px 30px}.topbar{align-items:flex-start}.brand h1{font-size:17px}.top-actions .btn{padding:9px 10px;font-size:11px}.welcome{align-items:flex-start;flex-direction:column}.welcome h2{font-size:22px}.cards{gap:9px}.metric{padding:13px}.metric-value{font-size:21px}.metric-head{font-size:10px}.panel{padding:15px}.table-panel{padding:0}.table-panel .panel-head{padding:16px 15px 0}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.period{width:100%}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><div class="logo">↗</div><div><h1>CashFlow Buddy</h1><p>Cash clarity, without the spreadsheets.</p></div></div>
+    <div class="top-actions"><button class="btn" id="exportBtn">↓ Export CSV</button><button class="btn primary" id="addBtn">＋ Add transaction</button></div>
+  </header>
+  <section class="welcome"><div><h2>Your cash at a glance</h2><p>Plan ahead with a clearer picture of money moving in and out.</p></div><select class="period" id="forecastPeriod" aria-label="Forecast period"><option value="30">Next 30 days</option><option value="60">Next 60 days</option><option value="90" selected>Next 90 days</option></select></section>
+  <section class="cards">
+    <article class="metric positive"><div class="metric-head">Available cash <span class="metric-icon">₹</span></div><div class="metric-value" id="currentCash">₹0</div><div class="metric-foot">Your starting cash balance</div></article>
+    <article class="metric"><div class="metric-head">Expected income <span class="metric-icon">↙</span></div><div class="metric-value" id="incomeTotal">₹0</div><div class="metric-foot" id="incomeFoot">Expected in next 30 days</div></article>
+    <article class="metric warning"><div class="metric-head">Upcoming expenses <span class="metric-icon">↗</span></div><div class="metric-value" id="expenseTotal">₹0</div><div class="metric-foot" id="expenseFoot">Due in next 30 days</div></article>
+    <article class="metric" id="lowestMetric"><div class="metric-head">Lowest projected cash <span class="metric-icon">⌁</span></div><div class="metric-value" id="lowestCash">₹0</div><div class="metric-foot" id="lowestFoot">Over the next 90 days</div></article>
+  </section>
+  <section class="layout">
+    <article class="panel">
+      <div class="panel-head"><div><h3>Cash balance forecast</h3><p class="sub">Projected end-of-day balance</p></div><div class="legend"><span><i class="dot"></i>Cash balance</span></div></div>
+      <div class="chart-wrap"><canvas id="forecastChart" aria-label="Cash balance forecast chart"></canvas></div><div class="chart-labels"><span>Today</span><span id="chartMiddle">Day 45</span><span id="chartEnd">Day 90</span></div>
+    </article>
+    <article class="panel">
+      <div class="panel-head"><div><h3>Forecast summary</h3><p class="sub">Based on the transactions you've entered</p></div></div>
+      <div class="forecast-box"><div class="label">Projected cash at end of period</div><div class="amount" id="endCash">₹0</div><div class="note" id="endNote">Opening cash + expected inflows − outflows</div></div>
+      <div class="forecast-list">
+        <div class="forecast-row"><span>Expected money in</span><strong class="money-in" id="summaryIncome">₹0</strong></div>
+        <div class="forecast-row"><span>Expected money out</span><strong id="summaryExpense">₹0</strong></div>
+        <div class="forecast-row"><span>Net cash movement</span><strong id="netMovement">₹0</strong></div>
+        <div class="forecast-row"><span>Lowest cash date</span><strong id="lowestDate">—</strong></div>
+      </div>
+      <div class="alert safe" id="cashAlert"><span>✓</span><span id="alertText">Your forecast is looking steady.</span></div>
+    </article>
+  </section>
+  <section class="panel table-panel" style="margin-bottom:16px">
+    <div class="panel-head"><div><h3>Transactions</h3><p class="sub">Manage expected and completed cash movements.</p></div><div class="table-tools"><input class="search" id="searchInput" placeholder="Search transactions…" aria-label="Search transactions"><select class="period" id="filterType" aria-label="Filter transactions"><option value="all">All transactions</option><option value="income">Income</option><option value="expense">Expenses</option><option value="pending">Pending only</option></select></div></div>
+    <div class="table-scroll"><table><thead><tr><th>Transaction</th><th>Date</th><th>Type</th><th>Status</th><th>Amount</th><th>Actions</th></tr></thead><tbody id="transactionRows"></tbody></table></div>
+    <div id="emptyTransactions" class="empty" style="display:none">No transactions match your search. Add a transaction or change the filter.</div>
+  </section>
+  <section class="bottom-grid">
+    <article class="panel"><div class="panel-head"><div><h3>Coming up next</h3><p class="sub">Your next scheduled cash movements</p></div></div><div class="mini-list" id="upcomingList"></div></article>
+    <article class="panel"><div class="panel-head"><div><h3>Recurring items</h3><p class="sub">Rules that keep your forecast up to date</p></div><button class="btn" id="recurringBtn">＋ Add recurring</button></div><div class="mini-list" id="recurringList"></div></article>
+  </section>
+  <div class="footer"><span>CashFlow Buddy · Prototype v1.0</span><span>Forecasts are estimates based on the information you enter.</span></div>
+  <p class="disclaimer">Your data is saved in this browser on this device. This prototype has no account login or cloud sync. Do not enter sensitive financial information or use it as your only financial record.</p>
+</div>
+<div class="modal-backdrop" id="modalBackdrop"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <h3 id="modalTitle">Add transaction</h3><p class="sub">Enter a cash movement to update your forecast.</p>
+  <form id="transactionForm">
+    <div class="field full"><label>Transaction type</label><div class="type-toggle"><button type="button" class="active income" data-type="income">↓ Income</button><button type="button" data-type="expense">↑ Expense</button></div></div>
+    <div class="form-grid" style="margin-top:14px">
+      <div class="field full"><label for="txName">Description</label><input id="txName" required maxlength="80" placeholder="e.g. Client invoice / Office rent"></div>
+      <div class="field"><label for="txAmount">Amount (₹)</label><input id="txAmount" type="number" min="0.01" step="0.01" required placeholder="25000"></div>
+      <div class="field"><label for="txDate">Expected date</label><input id="txDate" type="date" required></div>
+      <div class="field"><label for="txStatus">Status</label><select id="txStatus"><option value="expected">Expected</option><option value="received">Received / Paid</option></select></div>
+      <div class="field"><label for="txFrequency">Repeat</label><select id="txFrequency"><option value="none">Does not repeat</option><option value="weekly">Weekly</option><option value="monthly">Monthly</option><option value="quarterly">Quarterly</option><option value="yearly">Yearly</option></select></div>
+    </div>
+    <div class="form-actions"><button type="button" class="btn" id="cancelBtn">Cancel</button><button type="submit" class="btn primary">Save transaction</button></div>
+  </form>
+</div></div>
+<div class="toast" id="toast"></div>
+<script>
+(() => {
+const STORE='cashflow-buddy-v1';
+const today = new Date(); today.setHours(0,0,0,0);
+const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+const addDays=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+const parseDate=s=>{const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)};
+const money=n=>new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0}).format(Number(n)||0);
+const niceDate=s=>parseDate(s).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+const uid=()=>Math.random().toString(36).slice(2,10);
+let selectedType='income', editingId=null, recurringMode=false;
+const demo = () => {
+ const t=iso(today), d=n=>iso(addDays(today,n));
+ return {opening:200000,transactions:[
+ {id:uid(),name:'Client invoice — Project A',amount:85000,date:d(5),type:'income',status:'expected',frequency:'none',created:t},
+ {id:uid(),name:'Monthly retainer',amount:60000,date:d(12),type:'income',status:'expected',frequency:'monthly',created:t},
+ {id:uid(),name:'Office rent',amount:28000,date:d(3),type:'expense',status:'expected',frequency:'monthly',created:t},
+ {id:uid(),name:'Team salaries',amount:72000,date:d(8),type:'expense',status:'expected',frequency:'monthly',created:t},
+ {id:uid(),name:'Software subscriptions',amount:6500,date:d(15),type:'expense',status:'expected',frequency:'monthly',created:t},
+ {id:uid(),name:'Vendor payment',amount:35000,date:d(21),type:'expense',status:'expected',frequency:'none',created:t},
+ {id:uid(),name:'Invoice received',amount:45000,date:d(-2),type:'income',status:'received',frequency:'none',created:t}
+ ]};
+};
+function load(){try{const x=JSON.parse(localStorage.getItem(STORE));if(x&&Array.isArray(x.transactions))return x}catch(e){}return demo()}
+let state=load();
+function save(){localStorage.setItem(STORE,JSON.stringify(state))}
+function occurrences(tx,days){
+ const out=[];const start=parseDate(tx.date);const end=addDays(today,days);
+ if(tx.frequency==='none'){if(start<=end)out.push({...tx,occurrenceDate:tx.date,sourceId:tx.id});return out}
+ let d=new Date(start), guard=0;
+ while(d<=end&&guard++<500){
+  if(d>=today || tx.status==='received') out.push({...tx,occurrenceDate:iso(d),sourceId:tx.id,repeatOccurrence:iso(d)});
+  if(tx.frequency==='weekly')d.setDate(d.getDate()+7);
+  else if(tx.frequency==='monthly')d.setMonth(d.getMonth()+1);
+  else if(tx.frequency==='quarterly')d.setMonth(d.getMonth()+3);
+  else if(tx.frequency==='yearly')d.setFullYear(d.getFullYear()+1);
+  else break;
+ }
+ return out;
+}
+function allOccurrences(days){return state.transactions.flatMap(t=>occurrences(t,days)).filter(t=>t.occurrenceDate>=iso(today)||t.status==='received')}
+function forecast(days){
+ const points=[];let balance=Number(state.opening)||0, low=balance, lowDate=iso(today), inc=0,exp=0;
+ const txs=allOccurrences(days).filter(t=>t.occurrenceDate>=iso(today));
+ const byDate={};txs.forEach(t=>{(byDate[t.occurrenceDate]??=[]).push(t)});
+ for(let i=0;i<=days;i++){const date=iso(addDays(today,i));if(i>0){(byDate[date]||[]).forEach(t=>{if(t.status==='received'||t.status==='paid')return;if(t.type==='income'){balance+=Number(t.amount);inc+=Number(t.amount)}else{balance-=Number(t.amount);exp+=Number(t.amount)}})}if(balance<low){low=balance;lowDate=date}points.push({date,balance})}
+ return {points,low,lowDate,end:balance,inc,exp};
+}
+function statusFor(t){if(t.status==='received')return 'received';if(t.status==='paid')return 'paid';if(t.date<iso(today))return 'overdue';return 'expected'}
+function displayStatus(t){const s=statusFor(t);return s==='received'?'Received':s==='paid'?'Paid':s==='overdue'?'Overdue':'Expected'}
+function fmtAmount(t){return (t.type==='income'?'+':'−')+money(t.amount)}
+function render(){
+ const days=Number(document.getElementById('forecastPeriod').value||90), f=forecast(days);
+ document.getElementById('currentCash').textContent=money(state.opening);
+ document.getElementById('incomeTotal').textContent=money(f.inc);
+ document.getElementById('expenseTotal').textContent=money(f.exp);
+ document.getElementById('incomeFoot').textContent=`Expected over next ${days} days`;
+ document.getElementById('expenseFoot').textContent=`Due over next ${days} days`;
+ document.getElementById('lowestCash').textContent=money(f.low);
+ document.getElementById('lowestFoot').textContent=f.low<0?'Projected shortfall':'Lowest point in forecast';
+ document.getElementById('endCash').textContent=money(f.end);
+ document.getElementById('endNote').textContent=`Projected balance on ${niceDate(f.points[f.points.length-1].date)}`;
+ document.getElementById('summaryIncome').textContent=money(f.inc);
+ document.getElementById('summaryExpense').textContent=money(f.exp);
+ document.getElementById('netMovement').textContent=(f.inc-f.exp>=0?'+':'−')+money(Math.abs(f.inc-f.exp));
+ document.getElementById('lowestDate').textContent=niceDate(f.lowDate);
+ document.getElementById('chartMiddle').textContent=`Day ${Math.round(days/2)}`;
+ document.getElementById('chartEnd').textContent=`Day ${days}`;
+ const alert=document.getElementById('cashAlert');
+ if(f.low<0){alert.className='alert';document.getElementById('alertText').textContent=`Your forecast drops below ₹0. Review expected receipts or upcoming payments.`}
+ else {alert.className='alert safe';document.getElementById('alertText').textContent='No negative cash balance is projected with the entries currently recorded.'}
+ renderChart(f.points);
+ renderTransactions();renderUpcoming(days);renderRecurring();
+}
+function renderChart(points){
+ const canvas=document.getElementById('forecastChart'), rect=canvas.getBoundingClientRect(), dpr=window.devicePixelRatio||1;
+ canvas.width=Math.max(300,rect.width)*dpr;canvas.height=Math.max(160,rect.height)*dpr;
+ const ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);
+ const w=canvas.width/dpr,h=canvas.height/dpr,pad={l:8,r:8,t:14,b:12}, cw=w-pad.l-pad.r,ch=h-pad.t-pad.b;
+ const vals=points.map(p=>p.balance);let min=Math.min(0,...vals),max=Math.max(1,...vals);if(min===max)max=min+1;
+ const y=v=>pad.t+(max-v)/(max-min)*ch, x=i=>pad.l+i/(points.length-1)*cw;
+ ctx.clearRect(0,0,w,h);
+ ctx.font='10px system-ui';ctx.fillStyle='#8993a6';ctx.strokeStyle='#edf0f5';ctx.lineWidth=1;
+ for(let i=0;i<4;i++){const yy=pad.t+i*ch/3;ctx.beginPath();ctx.moveTo(pad.l,yy);ctx.lineTo(w-pad.r,yy);ctx.stroke();ctx.fillText(money(max-(max-min)*i/3).replace('₹','₹'),pad.l+2,Math.max(10,yy-4))}
+ ctx.beginPath();points.forEach((p,i)=>i?ctx.lineTo(x(i),y(p.balance)):ctx.moveTo(x(i),y(p.balance)));ctx.lineTo(x(points.length-1),h-pad.b);ctx.lineTo(x(0),h-pad.b);ctx.closePath();ctx.fillStyle='rgba(18,128,92,.08)';ctx.fill();
+ ctx.beginPath();points.forEach((p,i)=>i?ctx.lineTo(x(i),y(p.balance)):ctx.moveTo(x(i),y(p.balance)));ctx.strokeStyle='#12805c';ctx.lineWidth=2.5;ctx.lineJoin='round';ctx.stroke();
+ const last=points[points.length-1];ctx.beginPath();ctx.arc(x(points.length-1),y(last.balance),4,0,Math.PI*2);ctx.fillStyle='#12805c';ctx.fill();
+}
+function renderTransactions(){
+ const search=document.getElementById('searchInput').value.toLowerCase(),filter=document.getElementById('filterType').value;
+ const list=[...state.transactions].sort((a,b)=>a.date.localeCompare(b.date)).filter(t=>(t.name.toLowerCase().includes(search))&&(filter==='all'||(filter==='pending'?['expected'].includes(t.status):t.type===filter)));
+ const body=document.getElementById('transactionRows');body.innerHTML='';
+ list.forEach(t=>{const tr=document.createElement('tr');const status=statusFor(t);tr.innerHTML=`<td><div class="tx-name">${esc(t.name)}</div><div class="tx-sub">${t.frequency==='none'?'One-time':`Repeats ${t.frequency}`}</div></td><td>${niceDate(t.date)}</td><td>${t.type==='income'?'Income':'Expense'}</td><td><span class="pill ${status}">${displayStatus(t)}</span></td><td class="${t.type==='income'?'money-in':'money-out'}">${fmtAmount(t)}</td><td class="actions-cell"><button data-action="toggle" data-id="${t.id}" title="Mark paid or received">${t.status==='expected'?'✓ Mark done':'↺ Reopen'}</button><button data-action="edit" data-id="${t.id}" title="Edit">✎</button><button data-action="delete" data-id="${t.id}" title="Delete">×</button></td>`;body.appendChild(tr)});
+ document.getElementById('emptyTransactions').style.display=list.length?'none':'block';
+}
+function renderUpcoming(days){const el=document.getElementById('upcomingList');el.innerHTML='';const list=allOccurrences(days).filter(t=>t.occurrenceDate>=iso(today)&&t.status!=='received'&&t.status!=='paid').sort((a,b)=>a.occurrenceDate.localeCompare(b.occurrenceDate)).slice(0,5);if(!list.length){el.innerHTML='<div class="empty">No upcoming transactions. Add an income or expense to get started.</div>';return}list.forEach(t=>{const div=document.createElement('div');div.className='mini-item';div.innerHTML=`<div class="mini-left"><div class="mini-icon ${t.type==='expense'?'exp':''}">${t.type==='income'?'↓':'↑'}</div><div><div class="mini-title">${esc(t.name)}</div><div class="mini-meta">${niceDate(t.occurrenceDate)}</div></div></div><div class="mini-amount ${t.type==='income'?'money-in':''}">${fmtAmount(t)}</div>`;el.appendChild(div)})}
+function renderRecurring(){const el=document.getElementById('recurringList');el.innerHTML='';const list=state.transactions.filter(t=>t.frequency!=='none');if(!list.length){el.innerHTML='<div class="empty">No recurring items yet. Add rent, subscriptions, or regular income.</div>';return}list.slice(0,6).forEach(t=>{const div=document.createElement('div');div.className='mini-item';div.innerHTML=`<div class="mini-left"><div class="mini-icon ${t.type==='expense'?'exp':''}">↻</div><div><div class="mini-title">${esc(t.name)}</div><div class="mini-meta">${t.frequency[0].toUpperCase()+t.frequency.slice(1)} · ${t.type}</div></div></div><div class="mini-amount ${t.type==='income'?'money-in':''}">${fmtAmount(t)}</div>`;el.appendChild(div)})}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2200)}
+function openModal(tx=null,recurring=false){
+ editingId=tx?tx.id:null;recurringMode=recurring;
+ document.getElementById('modalTitle').textContent=tx?'Edit transaction':recurring?'Add recurring item':'Add transaction';
+ document.getElementById('txName').value=tx?.name||'';
+ document.getElementById('txAmount').value=tx?.amount||'';
+ document.getElementById('txDate').value=tx?.date||iso(addDays(today,1));
+ document.getElementById('txStatus').value=tx?.status||'expected';
+ document.getElementById('txFrequency').value=tx?.frequency||(recurring?'monthly':'none');
+ document.querySelectorAll('.type-toggle button').forEach(b=>{b.classList.toggle('active',b.dataset.type===(tx?.type||'income'));b.classList.toggle('income',b.dataset.type==='income');b.classList.toggle('expense',b.dataset.type==='expense')});
+ selectedType=tx?.type||'income';document.getElementById('modalBackdrop').classList.add('open');document.getElementById('txName').focus();
+}
+function closeModal(){document.getElementById('modalBackdrop').classList.remove('open')}
+document.getElementById('addBtn').onclick=()=>openModal();
+document.getElementById('recurringBtn').onclick=()=>openModal(null,true);
+document.getElementById('cancelBtn').onclick=closeModal;
+document.getElementById('modalBackdrop').addEventListener('click',e=>{if(e.target.id==='modalBackdrop')closeModal()});
+document.querySelectorAll('.type-toggle button').forEach(b=>b.onclick=()=>{selectedType=b.dataset.type;document.querySelectorAll('.type-toggle button').forEach(x=>x.classList.toggle('active',x===b))});
+document.getElementById('transactionForm').addEventListener('submit',e=>{e.preventDefault();const tx={id:editingId||uid(),name:document.getElementById('txName').value.trim(),amount:Number(document.getElementById('txAmount').value),date:document.getElementById('txDate').value,type:selectedType,status:document.getElementById('txStatus').value,frequency:document.getElementById('txFrequency').value,created:iso(today)};if(!tx.name||!tx.amount||tx.amount<=0||!tx.date){toast('Please complete all required fields.');return}if(editingId){state.transactions=state.transactions.map(t=>t.id===editingId?tx:t)}else state.transactions.push(tx);save();closeModal();render();toast(editingId?'Transaction updated':'Transaction saved')});
+document.getElementById('transactionRows').addEventListener('click',e=>{const b=e.target.closest('button[data-action]');if(!b)return;const t=state.transactions.find(x=>x.id===b.dataset.id);if(!t)return;if(b.dataset.action==='edit')openModal(t);if(b.dataset.action==='delete'){if(confirm(`Delete "${t.name}"?`)){state.transactions=state.transactions.filter(x=>x.id!==t.id);save();render();toast('Transaction deleted')}}if(b.dataset.action==='toggle'){t.status=(t.status==='expected'||t.status==='overdue')?(t.type==='income'?'received':'paid'):'expected';save();render();toast(t.status==='expected'?'Transaction reopened':'Marked complete')}});
+document.getElementById('forecastPeriod').onchange=render;
+document.getElementById('filterType').onchange=renderTransactions;
+document.getElementById('searchInput').oninput=renderTransactions;
+document.getElementById('exportBtn').onclick=()=>{const rows=[['Description','Amount','Date','Type','Status','Frequency'],...state.transactions.map(t=>[t.name,t.amount,t.date,t.type,t.status,t.frequency])];const csv=rows.map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\r\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='cashflow-buddy-transactions.csv';a.click();URL.revokeObjectURL(url);toast('CSV exported')};
+window.addEventListener('resize',()=>renderChart(forecast(Number(document.getElementById('forecastPeriod').value||90)).points));
+render();
+})();
+</script>
+</body>
+</html>
